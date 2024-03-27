@@ -33,14 +33,20 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Destructable"))
+        if (!collision.gameObject.CompareTag("Player"))
         {
-            var rocket = Instantiate(_explosion, collision.transform.position, Quaternion.identity);
-            Destroy(rocket, 1.5f);
-            Destroy(collision.collider.gameObject);
-        }
 
-        Destroy(gameObject);
+
+            if (collision.collider.CompareTag("Destructable"))
+            {
+                var rocket = Instantiate(_explosion, collision.transform.position, Quaternion.identity);
+                Destroy(rocket, 1.5f);
+                Destroy(collision.collider.gameObject);
+            }
+
+
+            Destroy(gameObject);
+        }
     }
 
     private void OnMissileFired()

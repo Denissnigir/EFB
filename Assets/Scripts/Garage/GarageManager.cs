@@ -11,6 +11,7 @@ public class GarageManager : MonoBehaviour
     [SerializeField] GameObject gun;
     [SerializeField] GameObject rocket;
     [SerializeField] GameObject player;
+    [SerializeField] List<GameObject> Enemies;
 
     private void OnEnable()
     {
@@ -36,6 +37,11 @@ public class GarageManager : MonoBehaviour
 
     private void Entrance_PlayerEntered()
     {
+        foreach (var obj in Enemies)
+        {
+            obj.gameObject.SetActive(false); 
+        }
+
         StartCoroutine(StartTimer());
     }
 
